@@ -1,5 +1,191 @@
 /* ==========================================================================
-   GLOBAL ACCESSIBILITY & UTILITY SCRIPTS
+   I-THINK MAP RENDERER LOGIC
+   ========================================================================== */
+const mapImages = {
+  'Circle': 'assets/image/pbulat.jpg',
+  'Bubble': 'assets/image/pb.jpg',
+  'Double Bubble': 'assets/image/pbb.jpg',
+  'Tree': 'assets/image/pp.jpg',
+  'Brace': 'assets/image/pd.jpg',
+  'Flow': 'assets/image/pa.jpg',
+  'Multi-Flow': 'assets/image/pba.jpg',
+  'Bridge': 'assets/image/pt.jpg'
+};
+
+function renderMap(type) {
+  const canvas = document.getElementById('canvas');
+  const imgSrc = mapImages[type];
+
+  if (imgSrc) {
+    canvas.innerHTML = `<img src="${imgSrc}" alt="${type} Map">`;
+  } else {
+    canvas.innerHTML = `<div class="map-node">Select an i-Think Map above</div>`;
+  }
+}
+
+/* ==========================================================================
+   FRIENDLY MIND MAP HELPER AI LOGIC
+   ========================================================================== */
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const messages = document.getElementById('chatMessages');
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.innerText = text;
+  messages.appendChild(userMsg);
+
+  input.value = '';
+  messages.scrollTop = messages.scrollHeight;
+
+  setTimeout(() => {
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'chat-msg ai';
+    aiMsg.innerText = generateMindMapHelperResponse(text);
+    messages.appendChild(aiMsg);
+    messages.scrollTop = messages.scrollHeight;
+  }, 600);
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter') sendMessage();
+}
+
+function generateMindMapHelperResponse(query) {
+  const q = query.toLowerCase();
+
+  if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+    return "Hello there! 😊 Good try reaching out! What subject and topic did your teacher teach you today?";
+  }
+
+  // 1. Part / Whole -> Brace Map
+  if (q.includes('part') || q.includes('body') || q.includes('car') || q.includes('house') || q.includes('brace')) {
+    renderMap('Brace');
+    return `1. Best mind map: Brace Map
+2. Why it fits: It is super easy for showing the smaller parts of one whole thing!
+3. Put these ideas in your map: main topic, part one, part two, part three, small details.
+4. Add your own drawing or colour idea: Draw the main object on the left, then use blue braces!
+5. Ask one simple checking question: Can you name two parts of your topic for me?`;
+  }
+
+  // 2. Groups / Sorting -> Tree Map
+  if (q.includes('group') || q.includes('sort') || q.includes('type') || q.includes('animal') || q.includes('fruit') || q.includes('tree')) {
+    renderMap('Tree');
+    return `1. Best mind map: Tree Map
+2. Why it fits: It helps you sort things into neat groups like branches on a tree!
+3. Put these ideas in your map: group name, category A, category B, examples, pictures.
+4. Add your own drawing or colour idea: Colour each tree branch with a different bright marker!
+5. Ask one simple checking question: What are two groups you can sort your topic into?`;
+  }
+
+  // 3. Steps / Order -> Flow Map
+  if (q.includes('step') || q.includes('order') || q.includes('life cycle') || q.includes('first') || (q.includes('flow') && !q.includes('multi'))) {
+    renderMap('Flow');
+    return `1. Best mind map: Flow Map
+2. Why it fits: It shows steps in order using neat arrows from start to finish!
+3. Put these ideas in your map: step 1, step 2, step 3, next step, final step.
+4. Add your own drawing or colour idea: Draw little arrows between boxes and color step 1 yellow!
+5. Ask one simple checking question: What is the very first step in your topic?`;
+  }
+
+  // 4. Compare 2 things -> Double Bubble Map
+  if (q.includes('compare') || q.includes('same') || q.includes('difference') || q.includes('vs') || q.includes('double')) {
+    renderMap('Double Bubble');
+    return `1. Best mind map: Double Bubble Map
+2. Why it fits: It lets you compare two things to see what is the same and what is different!
+3. Put these ideas in your map: thing 1, thing 2, same traits, different traits, keywords.
+4. Add your own drawing or colour idea: Use green bubbles for things that are the same!
+5. Ask one simple checking question: What is one thing both of your items share?`;
+  }
+
+  // 5. Causes and effects -> Multi-Flow Map
+  if (q.includes('cause') || q.includes('effect') || q.includes('why') || q.includes('because') || q.includes('multi')) {
+    renderMap('Multi-Flow');
+    return `1. Best mind map: Multi-Flow Map
+2. Why it fits: It shows why something happened and what happens next!
+3. Put these ideas in your map: cause 1, main event, effect 1, effect 2, outcome.
+4. Add your own drawing or colour idea: Color the causes blue and the effects orange!
+5. Ask one simple checking question: What made this event happen?`;
+  }
+
+  // 6. Default / Describe -> Bubble Map
+  renderMap('Bubble');
+  return `1. Best mind map: Bubble Map
+2. Why it fits: It is wonderful for describing something using describing words!
+3. Put these ideas in your map: topic name, describing word 1, describing word 2, color, shape.
+4. Add your own drawing or colour idea: Draw a big center bubble and surround it with colorful small bubbles!
+5. Ask one simple checking question: What is one word that describes your topic?
+
+(If you are unsure, ask your teacher to help check your ideas!)`;
+}
+
+/* ==========================================================================
+   VOICE RECORDING / SPEECH-TO-TEXT LOGIC
+   ========================================================================== */
+let recognition = null;
+let isListening = false;
+
+if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    const input = document.getElementById('userInput');
+    input.value = transcript;
+    stopListening();
+  };
+
+  recognition.onerror = function(event) {
+    console.error('Speech recognition error:', event.error);
+    stopListening();
+  };
+
+  recognition.onend = function() {
+    stopListening();
+  };
+}
+
+function toggleVoiceInput() {
+  if (!recognition) {
+    alert("Speech recognition is not supported in this browser. Please try Chrome or Edge!");
+    return;
+  }
+
+  if (isListening) {
+    recognition.stop();
+    stopListening();
+  } else {
+    try {
+      recognition.start();
+      isListening = true;
+      const micBtn = document.getElementById('micBtn');
+      micBtn.classList.add('recording-active');
+      micBtn.innerText = '🔴 Listening...';
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
+function stopListening() {
+  isListening = false;
+  const micBtn = document.getElementById('micBtn');
+  if (micBtn) {
+    micBtn.classList.remove('recording-active');
+    micBtn.innerText = '🎙️';
+  }
+}
+
+/* ==========================================================================
+   DYNAMIC ACCESSIBILITY & TEXT SCALING LOGIC
    ========================================================================== */
 let sizeOffset = 0;
 
@@ -42,15 +228,18 @@ function toggleContrast() {
   document.body.classList.toggle('high-contrast');
 }
 
-/* 5-MINUTE IDLE DETECTOR */
+/* ==========================================================================
+   5-MINUTE IDLE DETECTOR LOGIC FOR MAXIMUM TRANSPARENCY
+   ========================================================================== */
 let idleTimer;
-const IDLE_TIME_LIMIT = 5 * 60 * 1000;
+const IDLE_TIME_LIMIT = 5 * 60 * 1000; // 5 minutes
 
 function resetIdleTimer() {
   const container = document.getElementById('mainContainer');
   if (!container) return;
-  
+
   container.classList.remove('idle-transparent');
+  
   clearTimeout(idleTimer);
   idleTimer = setTimeout(() => {
     container.classList.add('idle-transparent');
