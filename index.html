@@ -1,6 +1,3 @@
-Here is your updated code with **`bg1.jpg`** integrated into the background while keeping all your custom UI features, 8 i-Think map buttons, accessibility controls, and lower resources intact:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -191,6 +188,14 @@ Here is your updated code with **`bg1.jpg`** integrated into the background whil
       justify-content: center;
       position: relative;
       overflow: hidden;
+      padding: 10px;
+    }
+
+    .mindmap-canvas img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
     }
 
     /* Simple Visual Renderers for Maps */
@@ -289,7 +294,7 @@ Here is your updated code with **`bg1.jpg`** integrated into the background whil
       <button class="interactive-btn" onclick="toggleSpeech()">🔊 Text-to-Speech</button>
       <button class="interactive-btn" onclick="adjustFontSize(1)">A+ Text Size</button>
       <button class="interactive-btn" onclick="adjustFontSize(-1)">A- Text Size</button>
-      <button class="interactive-btn" onclick="toggleContrast()">👁️ High Contrast</button>
+      <button class="interactive-btn" onclick="toggleContrast()">👁️ Change Mode </button>
     </div>
 
     <div class="grid-2">
@@ -354,34 +359,25 @@ Here is your updated code with **`bg1.jpg`** integrated into the background whil
     /* ==========================================================================
        I-THINK MAP RENDERER LOGIC
        ========================================================================== */
+    const mapImages = {
+      'Bulatan': 'pbulat.jpg',
+      'Buih': 'pb.jpg',
+      'Buih Berganda': 'pbb.jpg',
+      'Pokok': 'pp.jpg',
+      'Dakap': 'pd.jpg',
+      'Alir': 'pa.jpg',
+      'Pelbagai Alir': 'pba.jpg',
+      'Titi': 'pt.jpg'
+    };
+
     function renderMap(type) {
       const canvas = document.getElementById('canvas');
-      canvas.innerHTML = ''; // Clear previous map
+      const imgSrc = mapImages[type];
 
-      if (type === 'Bulatan') {
-        canvas.innerHTML = `
-          <div style="border:2px solid #fff; border-radius:50%; width:220px; height:220px; display:flex; align-items:center; justify-content:center; position:relative;">
-            <span style="font-size:0.75rem; position:absolute; top:10px;">Context / Context Box</span>
-            <div class="map-node" style="width:100px; height:100px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center;">Main Idea</div>
-          </div>`;
-      } else if (type === 'Buih') {
-        canvas.innerHTML = `
-          <div style="display:flex; gap:15px; align-items:center;">
-            <div class="map-node" style="border-radius:50%;">Adjective</div>
-            <div class="map-node" style="background:#0284c7;">Topic</div>
-            <div class="map-node" style="border-radius:50%;">Adjective</div>
-          </div>`;
-      } else if (type === 'Alir') {
-        canvas.innerHTML = `
-          <div style="display:flex; gap:10px; align-items:center;">
-            <div class="map-node">Step 1</div>
-            <span>➡️</span>
-            <div class="map-node">Step 2</div>
-            <span>➡️</span>
-            <div class="map-node">Step 3</div>
-          </div>`;
+      if (imgSrc) {
+        canvas.innerHTML = `<img src="${imgSrc}" alt="Peta ${type}">`;
       } else {
-        canvas.innerHTML = `<div class="map-node">[ ${type} Visual Layout Loaded ]</div>`;
+        canvas.innerHTML = `<div class="map-node">Select an i-Think Map above</div>`;
       }
     }
 
@@ -451,5 +447,3 @@ Here is your updated code with **`bg1.jpg`** integrated into the background whil
   </script>
 </body>
 </html>
-
-```
