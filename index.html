@@ -5,20 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minda Inklusif AI — Special Needs Learning Portal</title>
   
+  <!-- Google Font for Calligraphy Effect on Hover -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@600;800&display=swap" rel="stylesheet">
-  
-  <!-- External Shared Stylesheet -->
+
+  <!-- External Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <div class="app-container" id="mainContainer">
+    <!-- Main Heading with Rainbow Wave & Hover Effect -->
     <h1 class="image-heading">Minda Inklusif AI</h1>
     <p style="margin-top: -10px; opacity: 0.8;">Empowering Special Needs Education with Visual Mind Mapping & AI Support</p>
 
-    <!-- Accessibility Bar -->
+    <!-- Accessibility & Assistive Tools -->
     <div class="accessibility-bar" style="margin-top: 15px;">
       <button class="interactive-btn" onclick="toggleSpeech()">🔊 Text-to-Speech</button>
       <button class="interactive-btn" onclick="adjustFontSize(1)">A+ Text Size</button>
@@ -27,107 +29,72 @@
     </div>
 
     <div class="grid-2">
-      <!-- LEFT: i-Think Mind Maps -->
+      
+      <!-- LEFT COLUMN: 8 I-THINK MIND MAP MODULE -->
       <div class="glass-card">
         <h2 class="section-title">i-Think Mind Maps</h2>
         <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 12px;">Select an i-Think map to structure learning visually:</p>
         
-        <div class="ithink-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Circle')">Circle Map</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Bubble')">Bubble Map</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Double Bubble')">Double Bubble</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Tree')">Tree Map</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Brace')">Brace Map</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Flow')">Flow Map</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Multi-Flow')">Multi-Flow Map</button>
-          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Bridge')">Bridge Map</button>
+        <div class="ithink-grid">
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Circle')">Circle Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Bubble')">Bubble Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Double Bubble')">Double Bubble</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Tree')">Tree Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Brace')">Brace Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Flow')">Flow Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Multi-Flow')">Multi-Flow Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Bridge')">Bridge Map</button>
         </div>
 
-        <div class="mindmap-canvas" id="canvas" style="width: 100%; height: 280px; background: rgba(15, 23, 42, 0.35); border: 2px dashed rgba(255, 255, 255, 0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 10px;">
-          <div style="background: rgba(13, 148, 136, 0.7); border: 2px solid #fff; padding: 10px 18px; border-radius: 20px; font-weight: bold;">Select an i-Think Map above</div>
+        <div class="mindmap-canvas" id="canvas">
+          <div class="map-node">Select an i-Think Map above</div>
         </div>
       </div>
 
-      <!-- RIGHT: AI Assistant -->
+      <!-- RIGHT COLUMN: SPECIAL NEEDS AI ASSISTANT -->
       <div class="glass-card">
         <h2 class="section-title">Friendly AI Assistant</h2>
-        <div style="display: flex; flex-direction: column; height: 380px;">
-          <div id="chatMessages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
-            <div style="background: rgba(13, 148, 136, 0.35); border: 1px solid rgba(13, 148, 136, 0.5); padding: 12px 16px; border-radius: 14px; align-self: flex-start; max-width: 85%; font-size: 0.95rem; line-height: 1.5; white-space: pre-line;">🌟 Hello! I am your friendly Mind Map Helper!
+        <div class="chat-box">
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-msg ai">🌟 Hello! I am your friendly Mind Map Helper! 
 
-What subject and topic did your teacher teach you today?</div>
+What subject and topic did your teacher teach you today? Tell me what you want to show (like parts, groups, or steps), and I will help you pick the best mind map!</div>
           </div>
-          <div style="display: flex; gap: 10px;">
-            <input type="text" id="userInput" placeholder="Type or speak your topic..." onkeypress="handleKey(event)" style="flex: 1; background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 12px; padding: 10px 15px; color: #fff; outline: none;">
-            <button class="interactive-btn" id="micBtn" onclick="toggleVoiceInput()" style="padding: 12px 16px;">🎙️</button>
+          <div class="chat-input-area">
+            <input type="text" class="chat-input" id="userInput" placeholder="Type or speak your topic..." onkeypress="handleKey(event)">
+            <button class="interactive-btn" id="micBtn" onclick="toggleVoiceInput()" title="Start Voice Input" style="padding: 12px 16px;">🎙️</button>
             <button class="interactive-btn" onclick="sendMessage()">Send</button>
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- LOWER SECTION -->
+    <!-- LOWER SECTION: EXPANDABLE SPECIAL NEEDS RESOURCES -->
     <h2 class="section-title">Learning Materials</h2>
     <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
       <div class="glass-card">
         <h3>🎨 Visual Symbol Cards</h3>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Picture-assisted learning cues designed for non-verbal students.</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Picture-assisted learning cues designed for non-verbal or low-literacy students.</p>
         <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='cards.html'">Open Cards</button>
       </div>
 
       <div class="glass-card">
         <h3>🎮 Games</h3>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Interactive puzzle games designed to build sequential thinking skills.</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Interactive puzzle games designed to build sequential thinking and storytelling skills.</p>
         <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='storyteller.html'">Play Now</button>
       </div>
 
       <div class="glass-card">
         <h3>🎧 Audio Storybooks</h3>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Multi-sensory auditory reading materials with text highlighting.</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Multi-sensory auditory reading materials with synchronized text highlighting.</p>
         <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='audiobooks.html'">Listen Now</button>
       </div>
     </div>
+
   </div>
 
-  <!-- Shared JavaScript Files -->
-  <script src="js/accessibility.js"></script>
-  <script>
-    const mapImages = {
-'Circle': 'assets/image/pbulat.jpg',
-      'Bubble': 'assets/images/pb.jpg',
-      'Double Bubble': 'assets/images/pbb.jpg',
-      'Tree': 'assets/images/pp.jpg',
-      'Brace': 'assets/images/pd.jpg',
-      'Flow': 'assets/images/pa.jpg',
-      'Multi-Flow': 'assets/images/pba.jpg',
-      'Bridge': 'assets/images/pt.jpg'
-    };
-
-    function renderMap(type) {
-      const canvas = document.getElementById('canvas');
-      const imgSrc = mapImages[type];
-      if (imgSrc) {
-        canvas.innerHTML = `<img src="${imgSrc}" alt="${type} Map" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">`;
-      }
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('userInput');
-      const messages = document.getElementById('chatMessages');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const userMsg = document.createElement('div');
-      userMsg.style.cssText = 'background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px 16px; border-radius: 14px; align-self: flex-end; max-width: 85%; font-size: 0.95rem;';
-      userMsg.innerText = text;
-      messages.appendChild(userMsg);
-      input.value = '';
-      messages.scrollTop = messages.scrollHeight;
-    }
-
-    function handleKey(e) {
-      if (e.key === 'Enter') sendMessage();
-    }
-  </script>
+  <!-- External JavaScript -->
+  <script src="js/script.js"></script>
 </body>
 </html>
