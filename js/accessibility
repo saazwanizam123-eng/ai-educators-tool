@@ -1,0 +1,66 @@
+/* ==========================================================================
+   GLOBAL ACCESSIBILITY & UTILITY SCRIPTS
+   ========================================================================== */
+let sizeOffset = 0;
+
+window.addEventListener('DOMContentLoaded', () => {
+  const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
+  elements.forEach(el => {
+    const currentSize = parseFloat(window.getComputedStyle(el).fontSize);
+    el.dataset.originalSize = currentSize;
+  });
+});
+
+function adjustFontSize(delta) {
+  if ((sizeOffset <= -6 && delta < 0) || (sizeOffset >= 16 && delta > 0)) return;
+  
+  sizeOffset += delta * 2;
+  
+  const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
+  elements.forEach(el => {
+    let baseSize = parseFloat(el.dataset.originalSize);
+    if (!baseSize) {
+      baseSize = parseFloat(window.getComputedStyle(el).fontSize);
+      el.dataset.originalSize = baseSize;
+    }
+    el.style.fontSize = (baseSize + sizeOffset) + 'px';
+  });
+}
+
+function toggleSpeech() {
+  const textToRead = "Welcome to Minda Inklusif AI. Select an i-Think map or chat with your AI assistant.";
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("Text-to-speech is not supported in this browser.");
+  }
+}
+
+function toggleContrast() {
+  document.body.classList.toggle('high-contrast');
+}
+
+/* 5-MINUTE IDLE DETECTOR */
+let idleTimer;
+const IDLE_TIME_LIMIT = 5 * 60 * 1000;
+
+function resetIdleTimer() {
+  const container = document.getElementById('mainContainer');
+  if (!container) return;
+  
+  container.classList.remove('idle-transparent');
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => {
+    container.classList.add('idle-transparent');
+  }, IDLE_TIME_LIMIT);
+}
+
+window.onload = resetIdleTimer;
+window.onmousemove = resetIdleTimer;
+window.onmousedown = resetIdleTimer;
+window.ontouchstart = resetIdleTimer;
+window.onclick = resetIdleTimer;
+window.onkeydown = resetIdleTimer;
+window.addEventListener('scroll', resetIdleTimer, true);
