@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minda Inklusif AI — Special Needs Learning Portal</title>
   
-  <!-- Google Font for Victorian Calligraphy Effect on Hover -->
+  <!-- Google Font for Calligraphy Effect on Hover -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@600;800&display=swap" rel="stylesheet">
@@ -15,9 +15,10 @@
        LIQUID GLASS DESIGN SYSTEM & ACCESSIBILITY STYLES
        ========================================================================== */
     :root {
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.3);
-      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      /* Increased transparency (reduced alpha from 0.15 to 0.08) */
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
       --text-main: #0f172a;
       --accent-teal: #0d9488;
       --accent-glow: rgba(13, 148, 136, 0.6);
@@ -31,10 +32,10 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    /* BACKGROUND IMAGE WITH OVERLAY FOR HIGH READABILITY */
+    /* BACKGROUND IMAGE WITH OVERLAY */
     body {
       min-height: 100vh;
-      background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)), url('bg1.jpg') center/cover no-repeat fixed;
+      background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)), url('bg1.jpg') center/cover no-repeat fixed;
       color: #f8fafc;
       padding: 20px;
       transition: background 0.3s ease, color 0.3s ease;
@@ -64,12 +65,19 @@
       max-width: 1200px;
       margin: 0 auto;
       background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       box-shadow: var(--glass-shadow);
       padding: 30px;
+      /* Smooth fade effect for 5-minute idle mode */
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    /* IDLE MODE CLASS (Fades UI so background stands out) */
+    .app-container.idle-transparent {
+      opacity: 0.15;
     }
 
     /* ==========================================================================
@@ -83,14 +91,12 @@
       margin-bottom: 20px;
       display: inline-block;
       
-      /* Rainbow Gradient Background with Wave Animation */
       background: linear-gradient(90deg, #ff4e50, #f9d423, #22c55e, #06b6d4, #3b82f6, #a855f7, #ff4e50);
       background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: rainbowWave 6s linear infinite;
       
-      /* Transitions for Hover */
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, font-family 0.3s ease;
       cursor: pointer;
     }
@@ -118,12 +124,10 @@
       display: inline-block;
       letter-spacing: 0.5px;
       
-      /* Vibrant Glossy Clay Gradient Fill */
       background: linear-gradient(180deg, #ffffff 0%, #38bdf8 45%, #0284c7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       
-      /* 3D Clay Extrusion Shadow Effect */
       filter: drop-shadow(0px 2px 0px #0369a1)
               drop-shadow(0px 4px 0px #075985)
               drop-shadow(0px 6px 1px rgba(0, 0, 0, 0.4));
@@ -153,15 +157,16 @@
        GLOW & GROW INTERACTIVE BUTTONS WITH CALLIGRAPHY HOVER EFFECT
        ========================================================================== */
     .interactive-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      /* More transparent button background */
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
       padding: 12px 24px;
       font-size: 1rem;
       font-weight: 700;
       border-radius: 12px;
       cursor: pointer;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease, font-family 0.3s ease;
       outline: none;
       display: inline-flex;
@@ -173,7 +178,7 @@
       font-family: var(--calligraphy-font);
       font-size: 1.25rem;
       transform: scale(1.08) translateY(-2px);
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.3);
       box-shadow: 0 0 20px var(--accent-glow), 0 0 10px rgba(255, 255, 255, 0.5);
       border-color: #ffffff;
     }
@@ -182,7 +187,6 @@
       transform: scale(0.98);
     }
 
-    /* Recording Indicator Style */
     .recording-active {
       background: rgba(239, 68, 68, 0.8) !important;
       border-color: #f87171 !important;
@@ -209,16 +213,17 @@
       .grid-2 { grid-template-columns: 1fr; }
     }
 
+    /* Increased card transparency (0.06 alpha) */
     .glass-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 16px;
       padding: 20px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
     }
 
     /* ==========================================================================
-       FEATURE 1: 8 PETA MINDA I-THINK MODULE
+       FEATURE 1: 8 I-THINK MIND MAP MODULE
        ========================================================================== */
     .ithink-grid {
       display: grid;
@@ -234,11 +239,12 @@
       justify-content: center;
     }
 
+    /* More transparent canvas background */
     .mindmap-canvas {
       width: 100%;
       height: 280px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
+      background: rgba(15, 23, 42, 0.35);
+      border: 2px dashed rgba(255, 255, 255, 0.25);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -255,9 +261,8 @@
       border-radius: 8px;
     }
 
-    /* Simple Visual Renderers for Maps */
     .map-node {
-      background: rgba(13, 148, 136, 0.8);
+      background: rgba(13, 148, 136, 0.7);
       border: 2px solid #ffffff;
       padding: 10px 18px;
       border-radius: 20px;
@@ -293,15 +298,16 @@
       white-space: pre-line;
     }
 
+    /* More transparent chat bubbles */
     .chat-msg.ai {
-      background: rgba(13, 148, 136, 0.45);
-      border: 1px solid rgba(13, 148, 136, 0.6);
+      background: rgba(13, 148, 136, 0.35);
+      border: 1px solid rgba(13, 148, 136, 0.5);
       align-self: flex-start;
     }
 
     .chat-msg.user {
-      background: rgba(255, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       align-self: flex-end;
     }
 
@@ -312,8 +318,8 @@
 
     .chat-input {
       flex: 1;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 12px;
       padding: 10px 15px;
       color: #fff;
@@ -327,7 +333,7 @@
     }
 
     /* ==========================================================================
-       FEATURE 3: SPECIAL NEEDS ACCESSIBILITY TOOLBAR
+       ACCESSIBILITY TOOLBAR
        ========================================================================== */
     .accessibility-bar {
       display: flex;
@@ -335,14 +341,14 @@
       flex-wrap: wrap;
       margin-bottom: 20px;
       padding: 10px;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.15);
       border-radius: 12px;
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
+  <div class="app-container" id="mainContainer">
     <!-- Main Heading with Rainbow Wave & Hover Effect -->
     <h1 class="image-heading">Minda Inklusif AI</h1>
     <p style="margin-top: -10px; opacity: 0.8;">Empowering Special Needs Education with Visual Mind Mapping & AI Support</p>
@@ -352,25 +358,25 @@
       <button class="interactive-btn" onclick="toggleSpeech()">🔊 Text-to-Speech</button>
       <button class="interactive-btn" onclick="adjustFontSize(1)">A+ Text Size</button>
       <button class="interactive-btn" onclick="adjustFontSize(-1)">A- Text Size</button>
-      <button class="interactive-btn" onclick="toggleContrast()">👁️ Change Mode </button>
+      <button class="interactive-btn" onclick="toggleContrast()">👁️ Toggle High Contrast</button>
     </div>
 
     <div class="grid-2">
       
-      <!-- LEFT COLUMN: 8 PETA MINDA I-THINK MODULE -->
+      <!-- LEFT COLUMN: 8 I-THINK MIND MAP MODULE -->
       <div class="glass-card">
-        <h2 class="section-title">Peta Minda i-Think</h2>
+        <h2 class="section-title">i-Think Mind Maps</h2>
         <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 12px;">Select an i-Think map to structure learning visually:</p>
         
         <div class="ithink-grid">
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Bulatan')">Peta Bulatan</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Buih')">Peta Buih</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Buih Berganda')">Buih Berganda</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Pokok')">Peta Pokok</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Dakap')">Peta Dakap</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Alir')">Peta Alir</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Pelbagai Alir')">Pelbagai Alir</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Titi')">Peta Titi</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Circle')">Circle Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Bubble')">Bubble Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Double Bubble')">Double Bubble</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Tree')">Tree Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Brace')">Brace Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Flow')">Flow Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Multi-Flow')">Multi-Flow Map</button>
+          <button class="interactive-btn ithink-btn" onclick="renderMap('Bridge')">Bridge Map</button>
         </div>
 
         <div class="mindmap-canvas" id="canvas">
@@ -380,14 +386,12 @@
 
       <!-- RIGHT COLUMN: SPECIAL NEEDS AI ASSISTANT -->
       <div class="glass-card">
-        <h2 class="section-title">Pembantu AI Mesra</h2>
+        <h2 class="section-title">Friendly AI Assistant</h2>
         <div class="chat-box">
           <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg ai">
-              🌟 Hello! I am your friendly Mind Map Helper! 
+            <div class="chat-msg ai">🌟 Hello! I am your friendly Mind Map Helper! 
 
-What subject and topic did your teacher teach you today? Tell me what you want to show (like parts, groups, or steps), and I will help you pick the best mind map!
-            </div>
+What subject and topic did your teacher teach you today? Tell me what you want to show (like parts, groups, or steps), and I will help you pick the best mind map!</div>
           </div>
           <div class="chat-input-area">
             <input type="text" class="chat-input" id="userInput" placeholder="Type or speak your topic..." onkeypress="handleKey(event)">
@@ -400,17 +404,17 @@ What subject and topic did your teacher teach you today? Tell me what you want t
     </div>
 
     <!-- LOWER SECTION: EXPANDABLE SPECIAL NEEDS RESOURCES -->
-    <h2 class="section-title">Bahan Pembelajaran</h2>
+    <h2 class="section-title">Learning Materials</h2>
     <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
       <div class="glass-card">
         <h3>🎨 Visual Symbol Cards</h3>
         <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Picture-assisted learning cues designed for non-verbal or low-literacy students.</p>
-        <button class="interactive-btn" style="margin-top: 10px;">Open Cards</button>
+        <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='cards.html'">Open Cards</button>
       </div>
       <div class="glass-card">
         <h3>🎧 Audio Storybooks</h3>
         <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Multi-sensory auditory reading materials with synchronized text highlighting.</p>
-        <button class="interactive-btn" style="margin-top: 10px;">Listen Now</button>
+        <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='audiobooks.html'">Listen Now</button>
       </div>
     </div>
 
@@ -421,14 +425,14 @@ What subject and topic did your teacher teach you today? Tell me what you want t
        I-THINK MAP RENDERER LOGIC
        ========================================================================== */
     const mapImages = {
-      'Bulatan': 'pbulat.jpg',
-      'Buih': 'pb.jpg',
-      'Buih Berganda': 'pbb.jpg',
-      'Pokok': 'pp.jpg',
-      'Dakap': 'pd.jpg',
-      'Alir': 'pa.jpg',
-      'Pelbagai Alir': 'pba.jpg',
-      'Titi': 'pt.jpg'
+      'Circle': 'pbulat.jpg',
+      'Bubble': 'pb.jpg',
+      'Double Bubble': 'pbb.jpg',
+      'Tree': 'pp.jpg',
+      'Brace': 'pd.jpg',
+      'Flow': 'pa.jpg',
+      'Multi-Flow': 'pba.jpg',
+      'Bridge': 'pt.jpg'
     };
 
     function renderMap(type) {
@@ -436,14 +440,14 @@ What subject and topic did your teacher teach you today? Tell me what you want t
       const imgSrc = mapImages[type];
 
       if (imgSrc) {
-        canvas.innerHTML = `<img src="${imgSrc}" alt="Peta ${type}">`;
+        canvas.innerHTML = `<img src="${imgSrc}" alt="${type} Map">`;
       } else {
         canvas.innerHTML = `<div class="map-node">Select an i-Think Map above</div>`;
       }
     }
 
     /* ==========================================================================
-       YEAR 1 & 2 FRIENDLY MIND MAP HELPER AI LOGIC
+       FRIENDLY MIND MAP HELPER AI LOGIC
        ========================================================================== */
     function sendMessage() {
       const input = document.getElementById('userInput');
@@ -452,7 +456,6 @@ What subject and topic did your teacher teach you today? Tell me what you want t
 
       if (!text) return;
 
-      // Append User Message
       const userMsg = document.createElement('div');
       userMsg.className = 'chat-msg user';
       userMsg.innerText = text;
@@ -461,7 +464,6 @@ What subject and topic did your teacher teach you today? Tell me what you want t
       input.value = '';
       messages.scrollTop = messages.scrollHeight;
 
-      // Generate Friendly AI Mind Map Helper Response
       setTimeout(() => {
         const aiMsg = document.createElement('div');
         aiMsg.className = 'chat-msg ai';
@@ -478,64 +480,63 @@ What subject and topic did your teacher teach you today? Tell me what you want t
     function generateMindMapHelperResponse(query) {
       const q = query.toLowerCase();
 
-      // Simple greetings
       if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
         return "Hello there! 😊 Good try reaching out! What subject and topic did your teacher teach you today?";
       }
 
-      // 1. Part / Whole -> Brace Map (Peta Dakap)
-      if (q.includes('part') || q.includes('body') || q.includes('car') || q.includes('house') || q.includes('dakap')) {
-        renderMap('Dakap');
-        return `1. Best mind map: Brace Map (Peta Dakap)
+      // 1. Part / Whole -> Brace Map
+      if (q.includes('part') || q.includes('body') || q.includes('car') || q.includes('house') || q.includes('brace')) {
+        renderMap('Brace');
+        return `1. Best mind map: Brace Map
 2. Why it fits: It is super easy for showing the smaller parts of one whole thing!
 3. Put these ideas in your map: main topic, part one, part two, part three, small details.
 4. Add your own drawing or colour idea: Draw the main object on the left, then use blue braces!
 5. Ask one simple checking question: Can you name two parts of your topic for me?`;
       }
 
-      // 2. Groups / Sorting -> Tree Map (Peta Pokok)
-      if (q.includes('group') || q.includes('sort') || q.includes('type') || q.includes('animal') || q.includes('fruit') || q.includes('pokok')) {
-        renderMap('Pokok');
-        return `1. Best mind map: Tree Map (Peta Pokok)
+      // 2. Groups / Sorting -> Tree Map
+      if (q.includes('group') || q.includes('sort') || q.includes('type') || q.includes('animal') || q.includes('fruit') || q.includes('tree')) {
+        renderMap('Tree');
+        return `1. Best mind map: Tree Map
 2. Why it fits: It helps you sort things into neat groups like branches on a tree!
 3. Put these ideas in your map: group name, category A, category B, examples, pictures.
 4. Add your own drawing or colour idea: Colour each tree branch with a different bright marker!
 5. Ask one simple checking question: What are two groups you can sort your topic into?`;
       }
 
-      // 3. Steps / Order -> Flow Map (Peta Alir)
-      if (q.includes('step') || q.includes('order') || q.includes('life cycle') || q.includes('first') || q.includes('alir') && !q.includes('pelbagai')) {
-        renderMap('Alir');
-        return `1. Best mind map: Flow Map (Peta Alir)
+      // 3. Steps / Order -> Flow Map
+      if (q.includes('step') || q.includes('order') || q.includes('life cycle') || q.includes('first') || (q.includes('flow') && !q.includes('multi'))) {
+        renderMap('Flow');
+        return `1. Best mind map: Flow Map
 2. Why it fits: It shows steps in order using neat arrows from start to finish!
 3. Put these ideas in your map: step 1, step 2, step 3, next step, final step.
 4. Add your own drawing or colour idea: Draw little arrows between boxes and color step 1 yellow!
 5. Ask one simple checking question: What is the very first step in your topic?`;
       }
 
-      // 4. Compare 2 things -> Double Bubble Map (Peta Buih Berganda)
-      if (q.includes('compare') || q.includes('same') || q.includes('difference') || q.includes('vs') || q.includes('berganda')) {
-        renderMap('Buih Berganda');
-        return `1. Best mind map: Double Bubble Map (Peta Buih Berganda)
+      // 4. Compare 2 things -> Double Bubble Map
+      if (q.includes('compare') || q.includes('same') || q.includes('difference') || q.includes('vs') || q.includes('double')) {
+        renderMap('Double Bubble');
+        return `1. Best mind map: Double Bubble Map
 2. Why it fits: It lets you compare two things to see what is the same and what is different!
 3. Put these ideas in your map: thing 1, thing 2, same traits, different traits, keywords.
 4. Add your own drawing or colour idea: Use green bubbles for things that are the same!
 5. Ask one simple checking question: What is one thing both of your items share?`;
       }
 
-      // 5. Causes and effects -> Multi-Flow Map (Peta Pelbagai Alir)
-      if (q.includes('cause') || q.includes('effect') || q.includes('why') || q.includes('because') || q.includes('pelbagai')) {
-        renderMap('Pelbagai Alir');
-        return `1. Best mind map: Multi-Flow Map (Peta Pelbagai Alir)
+      // 5. Causes and effects -> Multi-Flow Map
+      if (q.includes('cause') || q.includes('effect') || q.includes('why') || q.includes('because') || q.includes('multi')) {
+        renderMap('Multi-Flow');
+        return `1. Best mind map: Multi-Flow Map
 2. Why it fits: It shows why something happened and what happens next!
 3. Put these ideas in your map: cause 1, main event, effect 1, effect 2, outcome.
 4. Add your own drawing or colour idea: Color the causes blue and the effects orange!
 5. Ask one simple checking question: What made this event happen?`;
       }
 
-      // 6. Default / Describe -> Bubble Map (Peta Buih)
-      renderMap('Buih');
-      return `1. Best mind map: Bubble Map (Peta Buih)
+      // 6. Default / Describe -> Bubble Map
+      renderMap('Bubble');
+      return `1. Best mind map: Bubble Map
 2. Why it fits: It is wonderful for describing something using describing words!
 3. Put these ideas in your map: topic name, describing word 1, describing word 2, color, shape.
 4. Add your own drawing or colour idea: Draw a big center bubble and surround it with colorful small bubbles!
@@ -556,7 +557,7 @@ What subject and topic did your teacher teach you today? Tell me what you want t
       
       recognition.continuous = false;
       recognition.interimResults = false;
-      recognition.lang = 'en-US'; // English default for child prompt
+      recognition.lang = 'en-US';
 
       recognition.onresult = function(event) {
         const transcript = event.results[0][0].transcript;
@@ -607,11 +608,10 @@ What subject and topic did your teacher teach you today? Tell me what you want t
     }
 
     /* ==========================================================================
-       DYNAMIC ACCESSIBILITY & INCREMENTAL TEXT SCALING LOGIC
+       DYNAMIC ACCESSIBILITY & TEXT SCALING LOGIC
        ========================================================================== */
-    let sizeOffset = 0; // Tracks cumulative font size changes in px
+    let sizeOffset = 0;
 
-    // Cache original font sizes on load to maintain layout proportions
     window.addEventListener('DOMContentLoaded', () => {
       const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
       elements.forEach(el => {
@@ -621,10 +621,9 @@ What subject and topic did your teacher teach you today? Tell me what you want t
     });
 
     function adjustFontSize(delta) {
-      // Limit adjustment to between -6px and +16px to prevent layout breaking
       if ((sizeOffset <= -6 && delta < 0) || (sizeOffset >= 16 && delta > 0)) return;
       
-      sizeOffset += delta * 2; // Increases/decreases by 2px per click
+      sizeOffset += delta * 2;
       
       const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
       elements.forEach(el => {
@@ -641,7 +640,7 @@ What subject and topic did your teacher teach you today? Tell me what you want t
       const textToRead = "Welcome to Minda Inklusif AI. Select an i-Think map or chat with your AI assistant.";
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.rate = 0.85; // Slower rate for special education clarity
+        utterance.rate = 0.85;
         window.speechSynthesis.speak(utterance);
       } else {
         alert("Text-to-speech is not supported in this browser.");
@@ -651,6 +650,33 @@ What subject and topic did your teacher teach you today? Tell me what you want t
     function toggleContrast() {
       document.body.classList.toggle('high-contrast');
     }
+
+    /* ==========================================================================
+       5-MINUTE IDLE DETECTOR LOGIC FOR MAXIMUM TRANSPARENCY
+       ========================================================================== */
+    let idleTimer;
+    const IDLE_TIME_LIMIT = 5 * 60 * 1000; // 5 minutes in milliseconds
+    const container = document.getElementById('mainContainer');
+
+    function resetIdleTimer() {
+      // Remove transparency if active
+      container.classList.remove('idle-transparent');
+      
+      // Clear existing timer and restart
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        container.classList.add('idle-transparent');
+      }, IDLE_TIME_LIMIT);
+    }
+
+    // User activity listeners to reset timer on interaction
+    window.onload = resetIdleTimer;
+    window.onmousemove = resetIdleTimer;
+    window.onmousedown = resetIdleTimer;
+    window.ontouchstart = resetIdleTimer;
+    window.onclick = resetIdleTimer;
+    window.onkeydown = resetIdleTimer;
+    window.addEventListener('scroll', resetIdleTimer, true);
   </script>
 </body>
 </html>
