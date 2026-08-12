@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindaInklusif AI — Special Needs Learning Portal</title>
+  <title>Minda Inklusif AI — Special Needs Learning Portal</title>
+  
+  <!-- Google Font for Victorian Calligraphy Effect on Hover -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
   <style>
     /* ==========================================================================
        LIQUID GLASS DESIGN SYSTEM & ACCESSIBILITY STYLES
@@ -15,6 +21,7 @@
       --text-main: #0f172a;
       --accent-teal: #0d9488;
       --accent-glow: rgba(13, 148, 136, 0.6);
+      --calligraphy-font: 'Great Vibes', cursive, serif;
     }
 
     * {
@@ -66,7 +73,7 @@
     }
 
     /* ==========================================================================
-       IMAGE-FILLED HEADINGS WITH GLOW & GROW ANIMATION
+       IMAGE-FILLED HEADINGS WITH GLOW, GROW & CALLIGRAPHY HOVER EFFECT
        ========================================================================== */
     .image-heading {
       font-size: 2.5rem;
@@ -82,11 +89,13 @@
       -webkit-text-fill-color: transparent;
       
       /* Smooth Hover Transitions */
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, font-family 0.3s ease;
       cursor: pointer;
     }
 
     .image-heading:hover {
+      font-family: var(--calligraphy-font);
+      text-transform: none;
       transform: scale(1.05) translateY(-3px);
       filter: drop-shadow(0 0 15px var(--accent-glow)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
     }
@@ -99,16 +108,27 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      transition: transform 0.3s ease, filter 0.3s ease, font-family 0.3s ease;
     }
 
     .section-title:hover {
+      font-family: var(--calligraphy-font);
       transform: scale(1.04);
       filter: drop-shadow(0 0 12px var(--accent-glow));
     }
 
+    h3 {
+      transition: font-family 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    h3:hover {
+      font-family: var(--calligraphy-font);
+      transform: scale(1.03);
+    }
+
     /* ==========================================================================
-       GLOW & GROW INTERACTIVE BUTTONS
+       GLOW & GROW INTERACTIVE BUTTONS WITH CALLIGRAPHY HOVER EFFECT
        ========================================================================== */
     .interactive-btn {
       background: rgba(255, 255, 255, 0.2);
@@ -120,7 +140,7 @@
       border-radius: 12px;
       cursor: pointer;
       backdrop-filter: blur(8px);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease, font-family 0.3s ease;
       outline: none;
       display: inline-flex;
       align-items: center;
@@ -128,6 +148,8 @@
     }
 
     .interactive-btn:hover {
+      font-family: var(--calligraphy-font);
+      font-size: 1.25rem;
       transform: scale(1.08) translateY(-2px);
       background: rgba(255, 255, 255, 0.35);
       box-shadow: 0 0 20px var(--accent-glow), 0 0 10px rgba(255, 255, 255, 0.5);
@@ -299,7 +321,7 @@
 
   <div class="app-container">
     <!-- Main Heading with Image Fill & Grow/Glow Effect -->
-    <h1 class="image-heading">MindaInklusif AI</h1>
+    <h1 class="image-heading">Minda Inklusif AI</h1>
     <p style="margin-top: -10px; opacity: 0.8;">Empowering Special Needs Education with Visual Mind Mapping & AI Support</p>
 
     <!-- Accessibility & Assistive Tools -->
@@ -498,12 +520,34 @@
     }
 
     /* ==========================================================================
-       ACCESSIBILITY CONTROL FUNCTIONS
+       DYNAMIC ACCESSIBILITY & INCREMENTAL TEXT SCALING LOGIC
        ========================================================================== */
-    let currentFontSize = 100;
+    let sizeOffset = 0; // Tracks cumulative font size changes in px
+
+    // Cache original font sizes on load to maintain layout proportions
+    window.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
+      elements.forEach(el => {
+        const currentSize = parseFloat(window.getComputedStyle(el).fontSize);
+        el.dataset.originalSize = currentSize;
+      });
+    });
+
     function adjustFontSize(delta) {
-      currentFontSize += delta * 10;
-      document.body.style.fontSize = currentFontSize + '%';
+      // Limit adjustment to between -6px and +16px to prevent layout breaking
+      if ((sizeOffset <= -6 && delta < 0) || (sizeOffset >= 16 && delta > 0)) return;
+      
+      sizeOffset += delta * 2; // Increases/decreases by 2px per click
+      
+      const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
+      elements.forEach(el => {
+        let baseSize = parseFloat(el.dataset.originalSize);
+        if (!baseSize) {
+          baseSize = parseFloat(window.getComputedStyle(el).fontSize);
+          el.dataset.originalSize = baseSize;
+        }
+        el.style.fontSize = (baseSize + sizeOffset) + 'px';
+      });
     }
 
     function toggleSpeech() {
