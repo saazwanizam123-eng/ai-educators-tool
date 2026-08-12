@@ -8,7 +8,7 @@
   <!-- Google Font for Victorian Calligraphy Effect on Hover -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@600;800&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
@@ -73,48 +73,70 @@
     }
 
     /* ==========================================================================
-       IMAGE-FILLED HEADINGS WITH GLOW, GROW & CALLIGRAPHY HOVER EFFECT
+       RAINBOW WAVE ANIMATED MAIN TITLE
        ========================================================================== */
     .image-heading {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       margin-bottom: 20px;
       display: inline-block;
       
-      /* Image fill inside text */
-      background: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1000&q=80') center/cover;
+      /* Rainbow Gradient Background with Wave Animation */
+      background: linear-gradient(90deg, #ff4e50, #f9d423, #22c55e, #06b6d4, #3b82f6, #a855f7, #ff4e50);
+      background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: rainbowWave 6s linear infinite;
       
-      /* Smooth Hover Transitions */
+      /* Transitions for Hover */
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, font-family 0.3s ease;
       cursor: pointer;
+    }
+
+    @keyframes rainbowWave {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
     }
 
     .image-heading:hover {
       font-family: var(--calligraphy-font);
       text-transform: none;
-      transform: scale(1.05) translateY(-3px);
-      filter: drop-shadow(0 0 15px var(--accent-glow)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+      transform: scale(1.08) translateY(-4px);
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 25px rgba(6, 182, 212, 0.8));
     }
 
+    /* ==========================================================================
+       VIBRANT 3D CLAY TEXTURE SECTION HEADINGS
+       ========================================================================== */
     .section-title {
-      font-size: 1.8rem;
+      font-family: 'Fredoka', 'Segoe UI', sans-serif;
+      font-size: 2.1rem;
       font-weight: 800;
       margin: 30px 0 15px 0;
-      background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1000&q=80') center/cover;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      
+      /* Vibrant Glossy Clay Gradient Fill */
+      background: linear-gradient(180deg, #ffffff 0%, #38bdf8 45%, #0284c7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline-block;
-      transition: transform 0.3s ease, filter 0.3s ease, font-family 0.3s ease;
+      
+      /* 3D Clay Extrusion Shadow Effect */
+      filter: drop-shadow(0px 2px 0px #0369a1)
+              drop-shadow(0px 4px 0px #075985)
+              drop-shadow(0px 6px 1px rgba(0, 0, 0, 0.4));
+      
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, font-family 0.3s ease;
+      cursor: pointer;
     }
 
     .section-title:hover {
       font-family: var(--calligraphy-font);
-      transform: scale(1.04);
-      filter: drop-shadow(0 0 12px var(--accent-glow));
+      -webkit-text-fill-color: #ffffff;
+      transform: scale(1.06) translateY(-2px);
+      filter: drop-shadow(0 0 12px var(--accent-glow)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
     }
 
     h3 {
@@ -263,15 +285,16 @@
     }
 
     .chat-msg {
-      max-width: 80%;
-      padding: 10px 14px;
+      max-width: 85%;
+      padding: 12px 16px;
       border-radius: 14px;
       font-size: 0.95rem;
-      line-height: 1.4;
+      line-height: 1.5;
+      white-space: pre-line;
     }
 
     .chat-msg.ai {
-      background: rgba(13, 148, 136, 0.4);
+      background: rgba(13, 148, 136, 0.45);
       border: 1px solid rgba(13, 148, 136, 0.6);
       align-self: flex-start;
     }
@@ -320,7 +343,7 @@
 <body>
 
   <div class="app-container">
-    <!-- Main Heading with Image Fill & Grow/Glow Effect -->
+    <!-- Main Heading with Rainbow Wave & Hover Effect -->
     <h1 class="image-heading">Minda Inklusif AI</h1>
     <p style="margin-top: -10px; opacity: 0.8;">Empowering Special Needs Education with Visual Mind Mapping & AI Support</p>
 
@@ -361,11 +384,13 @@
         <div class="chat-box">
           <div class="chat-messages" id="chatMessages">
             <div class="chat-msg ai">
-              👋 High! I am your AI learning companion. Ask me to simplify any lesson, explain words, or summarize stories!
+              🌟 Hello! I am your friendly Mind Map Helper! 
+
+What subject and topic did your teacher teach you today? Tell me what you want to show (like parts, groups, or steps), and I will help you pick the best mind map!
             </div>
           </div>
           <div class="chat-input-area">
-            <input type="text" class="chat-input" id="userInput" placeholder="Type or speak a question..." onkeypress="handleKey(event)">
+            <input type="text" class="chat-input" id="userInput" placeholder="Type or speak your topic..." onkeypress="handleKey(event)">
             <button class="interactive-btn" id="micBtn" onclick="toggleVoiceInput()" title="Start Voice Input" style="padding: 12px 16px;">🎙️</button>
             <button class="interactive-btn" onclick="sendMessage()">Send</button>
           </div>
@@ -375,7 +400,7 @@
     </div>
 
     <!-- LOWER SECTION: EXPANDABLE SPECIAL NEEDS RESOURCES -->
-    <h2 class="section-title">Bahan Pembelajaran Terbeza</h2>
+    <h2 class="section-title">Bahan Pembelajaran</h2>
     <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
       <div class="glass-card">
         <h3>🎨 Visual Symbol Cards</h3>
@@ -418,7 +443,7 @@
     }
 
     /* ==========================================================================
-       SIMULATED AI CHATBOT WITH SPECIAL NEEDS SIMPLIFICATION
+       YEAR 1 & 2 FRIENDLY MIND MAP HELPER AI LOGIC
        ========================================================================== */
     function sendMessage() {
       const input = document.getElementById('userInput');
@@ -436,11 +461,11 @@
       input.value = '';
       messages.scrollTop = messages.scrollHeight;
 
-      // Generate AI Response with simplified structure
+      // Generate Friendly AI Mind Map Helper Response
       setTimeout(() => {
         const aiMsg = document.createElement('div');
         aiMsg.className = 'chat-msg ai';
-        aiMsg.innerText = getAIResponse(text);
+        aiMsg.innerText = generateMindMapHelperResponse(text);
         messages.appendChild(aiMsg);
         messages.scrollTop = messages.scrollHeight;
       }, 600);
@@ -450,11 +475,73 @@
       if (e.key === 'Enter') sendMessage();
     }
 
-    function getAIResponse(query) {
+    function generateMindMapHelperResponse(query) {
       const q = query.toLowerCase();
-      if (q.includes('hello') || q.includes('hi')) return "Hello! I am ready to help you learn today. What topic are we studying?";
-      if (q.includes('help') || q.includes('peta')) return "You can click any i-Think map button on the left to visually organize your thoughts!";
-      return "That's a great question! Here is a simple breakdown: 1. Read key words. 2. Use a Bubble map to describe it. Would you like me to explain more simply?";
+
+      // Simple greetings
+      if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+        return "Hello there! 😊 Good try reaching out! What subject and topic did your teacher teach you today?";
+      }
+
+      // 1. Part / Whole -> Brace Map (Peta Dakap)
+      if (q.includes('part') || q.includes('body') || q.includes('car') || q.includes('house') || q.includes('dakap')) {
+        renderMap('Dakap');
+        return `1. Best mind map: Brace Map (Peta Dakap)
+2. Why it fits: It is super easy for showing the smaller parts of one whole thing!
+3. Put these ideas in your map: main topic, part one, part two, part three, small details.
+4. Add your own drawing or colour idea: Draw the main object on the left, then use blue braces!
+5. Ask one simple checking question: Can you name two parts of your topic for me?`;
+      }
+
+      // 2. Groups / Sorting -> Tree Map (Peta Pokok)
+      if (q.includes('group') || q.includes('sort') || q.includes('type') || q.includes('animal') || q.includes('fruit') || q.includes('pokok')) {
+        renderMap('Pokok');
+        return `1. Best mind map: Tree Map (Peta Pokok)
+2. Why it fits: It helps you sort things into neat groups like branches on a tree!
+3. Put these ideas in your map: group name, category A, category B, examples, pictures.
+4. Add your own drawing or colour idea: Colour each tree branch with a different bright marker!
+5. Ask one simple checking question: What are two groups you can sort your topic into?`;
+      }
+
+      // 3. Steps / Order -> Flow Map (Peta Alir)
+      if (q.includes('step') || q.includes('order') || q.includes('life cycle') || q.includes('first') || q.includes('alir') && !q.includes('pelbagai')) {
+        renderMap('Alir');
+        return `1. Best mind map: Flow Map (Peta Alir)
+2. Why it fits: It shows steps in order using neat arrows from start to finish!
+3. Put these ideas in your map: step 1, step 2, step 3, next step, final step.
+4. Add your own drawing or colour idea: Draw little arrows between boxes and color step 1 yellow!
+5. Ask one simple checking question: What is the very first step in your topic?`;
+      }
+
+      // 4. Compare 2 things -> Double Bubble Map (Peta Buih Berganda)
+      if (q.includes('compare') || q.includes('same') || q.includes('difference') || q.includes('vs') || q.includes('berganda')) {
+        renderMap('Buih Berganda');
+        return `1. Best mind map: Double Bubble Map (Peta Buih Berganda)
+2. Why it fits: It lets you compare two things to see what is the same and what is different!
+3. Put these ideas in your map: thing 1, thing 2, same traits, different traits, keywords.
+4. Add your own drawing or colour idea: Use green bubbles for things that are the same!
+5. Ask one simple checking question: What is one thing both of your items share?`;
+      }
+
+      // 5. Causes and effects -> Multi-Flow Map (Peta Pelbagai Alir)
+      if (q.includes('cause') || q.includes('effect') || q.includes('why') || q.includes('because') || q.includes('pelbagai')) {
+        renderMap('Pelbagai Alir');
+        return `1. Best mind map: Multi-Flow Map (Peta Pelbagai Alir)
+2. Why it fits: It shows why something happened and what happens next!
+3. Put these ideas in your map: cause 1, main event, effect 1, effect 2, outcome.
+4. Add your own drawing or colour idea: Color the causes blue and the effects orange!
+5. Ask one simple checking question: What made this event happen?`;
+      }
+
+      // 6. Default / Describe -> Bubble Map (Peta Buih)
+      renderMap('Buih');
+      return `1. Best mind map: Bubble Map (Peta Buih)
+2. Why it fits: It is wonderful for describing something using describing words!
+3. Put these ideas in your map: topic name, describing word 1, describing word 2, color, shape.
+4. Add your own drawing or colour idea: Draw a big center bubble and surround it with colorful small bubbles!
+5. Ask one simple checking question: What is one word that describes your topic?
+
+(If you are unsure, ask your teacher to help check your ideas!)`;
     }
 
     /* ==========================================================================
@@ -469,7 +556,7 @@
       
       recognition.continuous = false;
       recognition.interimResults = false;
-      recognition.lang = 'ms-MY'; // Set default to Bahasa Melayu; change to 'en-US' for English
+      recognition.lang = 'en-US'; // English default for child prompt
 
       recognition.onresult = function(event) {
         const transcript = event.results[0][0].transcript;
