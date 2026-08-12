@@ -65,7 +65,9 @@ body.high-contrast .interactive-btn {
   opacity: 0.15;
 }
 
-/* RAINBOW WAVE ANIMATED MAIN TITLE */
+/* ==========================================================================
+   RAINBOW WAVE ANIMATED MAIN TITLE
+   ========================================================================== */
 .image-heading {
   font-size: 2.8rem;
   font-weight: 900;
@@ -73,11 +75,13 @@ body.high-contrast .interactive-btn {
   letter-spacing: 2px;
   margin-bottom: 20px;
   display: inline-block;
+  
   background: linear-gradient(90deg, #ff4e50, #f9d423, #22c55e, #06b6d4, #3b82f6, #a855f7, #ff4e50);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: rainbowWave 6s linear infinite;
+  
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, font-family 0.3s ease;
   cursor: pointer;
 }
@@ -94,7 +98,9 @@ body.high-contrast .interactive-btn {
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 25px rgba(6, 182, 212, 0.8));
 }
 
-/* VIBRANT 3D CLAY TEXTURE SECTION HEADINGS */
+/* ==========================================================================
+   VIBRANT 3D CLAY TEXTURE SECTION HEADINGS
+   ========================================================================== */
 .section-title {
   font-family: 'Fredoka', 'Segoe UI', sans-serif;
   font-size: 2.1rem;
@@ -102,12 +108,15 @@ body.high-contrast .interactive-btn {
   margin: 30px 0 15px 0;
   display: inline-block;
   letter-spacing: 0.5px;
+  
   background: linear-gradient(180deg, #ffffff 0%, #38bdf8 45%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
   filter: drop-shadow(0px 2px 0px #0369a1)
           drop-shadow(0px 4px 0px #075985)
           drop-shadow(0px 6px 1px rgba(0, 0, 0, 0.4));
+  
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, font-family 0.3s ease;
   cursor: pointer;
 }
@@ -129,7 +138,9 @@ h3:hover {
   transform: scale(1.03);
 }
 
-/* INTERACTIVE BUTTONS */
+/* ==========================================================================
+   GLOW & GROW INTERACTIVE BUTTONS
+   ========================================================================== */
 .interactive-btn {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -172,7 +183,9 @@ h3:hover {
   100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 
-/* LAYOUT & CARDS */
+/* ==========================================================================
+   FEATURE SECTIONS LAYOUT
+   ========================================================================== */
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -192,6 +205,117 @@ h3:hover {
   backdrop-filter: blur(8px);
 }
 
+/* ==========================================================================
+   FEATURE 1: 8 I-THINK MIND MAP MODULE
+   ========================================================================== */
+.ithink-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ithink-btn {
+  padding: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.mindmap-canvas {
+  width: 100%;
+  height: 280px;
+  background: rgba(15, 23, 42, 0.35);
+  border: 2px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.mindmap-canvas img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.map-node {
+  background: rgba(13, 148, 136, 0.7);
+  border: 2px solid #ffffff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* ==========================================================================
+   FEATURE 2: ACCESSIBLE AI ASSISTANT CHATBOX
+   ========================================================================== */
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 5px;
+  margin-bottom: 15px;
+}
+
+.chat-msg {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.chat-msg.ai {
+  background: rgba(13, 148, 136, 0.35);
+  border: 1px solid rgba(13, 148, 136, 0.5);
+  align-self: flex-start;
+}
+
+.chat-msg.user {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  align-self: flex-end;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: 10px 15px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY TOOLBAR
+   ========================================================================== */
 .accessibility-bar {
   display: flex;
   gap: 10px;
