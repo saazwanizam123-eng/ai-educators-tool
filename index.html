@@ -5,355 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minda Inklusif AI — Special Needs Learning Portal</title>
   
-  <!-- Google Font for Calligraphy Effect on Hover -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@600;800&display=swap" rel="stylesheet">
-
-  <style>
-    /* ==========================================================================
-       LIQUID GLASS DESIGN SYSTEM & ACCESSIBILITY STYLES
-       ========================================================================== */
-    :root {
-      /* Increased transparency (reduced alpha from 0.15 to 0.08) */
-      --glass-bg: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.25);
-      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-      --text-main: #0f172a;
-      --accent-teal: #0d9488;
-      --accent-glow: rgba(13, 148, 136, 0.6);
-      --calligraphy-font: 'Great Vibes', cursive, serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
-
-    /* BACKGROUND IMAGE WITH OVERLAY */
-    body {
-      min-height: 100vh;
-      background: linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)), url('bg1.jpg') center/cover no-repeat fixed;
-      color: #f8fafc;
-      padding: 20px;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    /* High Contrast Mode Toggle Class */
-    body.high-contrast {
-      background: #000000 !important;
-      color: #ffff00 !important;
-    }
-
-    body.high-contrast .app-container,
-    body.high-contrast .glass-card {
-      background: #000000 !important;
-      border: 2px solid #ffff00 !important;
-      box-shadow: none !important;
-    }
-
-    body.high-contrast .interactive-btn {
-      background: #000000 !important;
-      border: 2px solid #ffff00 !important;
-      color: #ffff00 !important;
-    }
-
-    /* Container Glass Card */
-    .app-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      box-shadow: var(--glass-shadow);
-      padding: 30px;
-      /* Smooth fade effect for 5-minute idle mode */
-      transition: opacity 0.8s ease-in-out;
-    }
-
-    /* IDLE MODE CLASS (Fades UI so background stands out) */
-    .app-container.idle-transparent {
-      opacity: 0.15;
-    }
-
-    /* ==========================================================================
-       RAINBOW WAVE ANIMATED MAIN TITLE
-       ========================================================================== */
-    .image-heading {
-      font-size: 2.8rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-      display: inline-block;
-      
-      background: linear-gradient(90deg, #ff4e50, #f9d423, #22c55e, #06b6d4, #3b82f6, #a855f7, #ff4e50);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowWave 6s linear infinite;
-      
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, font-family 0.3s ease;
-      cursor: pointer;
-    }
-
-    @keyframes rainbowWave {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 300% 50%; }
-    }
-
-    .image-heading:hover {
-      font-family: var(--calligraphy-font);
-      text-transform: none;
-      transform: scale(1.08) translateY(-4px);
-      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 25px rgba(6, 182, 212, 0.8));
-    }
-
-    /* ==========================================================================
-       VIBRANT 3D CLAY TEXTURE SECTION HEADINGS
-       ========================================================================== */
-    .section-title {
-      font-family: 'Fredoka', 'Segoe UI', sans-serif;
-      font-size: 2.1rem;
-      font-weight: 800;
-      margin: 30px 0 15px 0;
-      display: inline-block;
-      letter-spacing: 0.5px;
-      
-      background: linear-gradient(180deg, #ffffff 0%, #38bdf8 45%, #0284c7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      
-      filter: drop-shadow(0px 2px 0px #0369a1)
-              drop-shadow(0px 4px 0px #075985)
-              drop-shadow(0px 6px 1px rgba(0, 0, 0, 0.4));
-      
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, font-family 0.3s ease;
-      cursor: pointer;
-    }
-
-    .section-title:hover {
-      font-family: var(--calligraphy-font);
-      -webkit-text-fill-color: #ffffff;
-      transform: scale(1.06) translateY(-2px);
-      filter: drop-shadow(0 0 12px var(--accent-glow)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
-    }
-
-    h3 {
-      transition: font-family 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    h3:hover {
-      font-family: var(--calligraphy-font);
-      transform: scale(1.03);
-    }
-
-    /* ==========================================================================
-       GLOW & GROW INTERACTIVE BUTTONS WITH CALLIGRAPHY HOVER EFFECT
-       ========================================================================== */
-    .interactive-btn {
-      /* More transparent button background */
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #ffffff;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease, font-family 0.3s ease;
-      outline: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .interactive-btn:hover {
-      font-family: var(--calligraphy-font);
-      font-size: 1.25rem;
-      transform: scale(1.08) translateY(-2px);
-      background: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 20px var(--accent-glow), 0 0 10px rgba(255, 255, 255, 0.5);
-      border-color: #ffffff;
-    }
-
-    .interactive-btn:active {
-      transform: scale(0.98);
-    }
-
-    .recording-active {
-      background: rgba(239, 68, 68, 0.8) !important;
-      border-color: #f87171 !important;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
-
-    /* ==========================================================================
-       FEATURE SECTIONS LAYOUT
-       ========================================================================== */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 850px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    /* Increased card transparency (0.06 alpha) */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 16px;
-      padding: 20px;
-      backdrop-filter: blur(8px);
-    }
-
-    /* ==========================================================================
-       FEATURE 1: 8 I-THINK MIND MAP MODULE
-       ========================================================================== */
-    .ithink-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .ithink-btn {
-      padding: 10px;
-      font-size: 0.85rem;
-      text-align: center;
-      justify-content: center;
-    }
-
-    /* More transparent canvas background */
-    .mindmap-canvas {
-      width: 100%;
-      height: 280px;
-      background: rgba(15, 23, 42, 0.35);
-      border: 2px dashed rgba(255, 255, 255, 0.25);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: 10px;
-    }
-
-    .mindmap-canvas img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .map-node {
-      background: rgba(13, 148, 136, 0.7);
-      border: 2px solid #ffffff;
-      padding: 10px 18px;
-      border-radius: 20px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-
-    /* ==========================================================================
-       FEATURE 2: ACCESSIBLE AI ASSISTANT CHATBOX
-       ========================================================================== */
-    .chat-box {
-      display: flex;
-      flex-direction: column;
-      height: 380px;
-    }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-right: 5px;
-      margin-bottom: 15px;
-    }
-
-    .chat-msg {
-      max-width: 85%;
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      white-space: pre-line;
-    }
-
-    /* More transparent chat bubbles */
-    .chat-msg.ai {
-      background: rgba(13, 148, 136, 0.35);
-      border: 1px solid rgba(13, 148, 136, 0.5);
-      align-self: flex-start;
-    }
-
-    .chat-msg.user {
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      align-self: flex-end;
-    }
-
-    .chat-input-area {
-      display: flex;
-      gap: 10px;
-    }
-
-    .chat-input {
-      flex: 1;
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 12px;
-      padding: 10px 15px;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .chat-input:focus {
-      border-color: var(--accent-teal);
-      box-shadow: 0 0 8px var(--accent-glow);
-    }
-
-    /* ==========================================================================
-       ACCESSIBILITY TOOLBAR
-       ========================================================================== */
-    .accessibility-bar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.15);
-      border-radius: 12px;
-    }
-  </style>
+  
+  <!-- External Shared Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <div class="app-container" id="mainContainer">
-    <!-- Main Heading with Rainbow Wave & Hover Effect -->
     <h1 class="image-heading">Minda Inklusif AI</h1>
     <p style="margin-top: -10px; opacity: 0.8;">Empowering Special Needs Education with Visual Mind Mapping & AI Support</p>
 
-    <!-- Accessibility & Assistive Tools -->
+    <!-- Accessibility Bar -->
     <div class="accessibility-bar" style="margin-top: 15px;">
       <button class="interactive-btn" onclick="toggleSpeech()">🔊 Text-to-Speech</button>
       <button class="interactive-btn" onclick="adjustFontSize(1)">A+ Text Size</button>
@@ -362,321 +27,107 @@
     </div>
 
     <div class="grid-2">
-      
-      <!-- LEFT COLUMN: 8 I-THINK MIND MAP MODULE -->
+      <!-- LEFT: i-Think Mind Maps -->
       <div class="glass-card">
         <h2 class="section-title">i-Think Mind Maps</h2>
         <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 12px;">Select an i-Think map to structure learning visually:</p>
         
-        <div class="ithink-grid">
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Circle')">Circle Map</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Bubble')">Bubble Map</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Double Bubble')">Double Bubble</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Tree')">Tree Map</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Brace')">Brace Map</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Flow')">Flow Map</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Multi-Flow')">Multi-Flow Map</button>
-          <button class="interactive-btn ithink-btn" onclick="renderMap('Bridge')">Bridge Map</button>
+        <div class="ithink-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Circle')">Circle Map</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Bubble')">Bubble Map</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Double Bubble')">Double Bubble</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Tree')">Tree Map</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Brace')">Brace Map</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Flow')">Flow Map</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Multi-Flow')">Multi-Flow Map</button>
+          <button class="interactive-btn" style="padding: 10px; font-size: 0.85rem;" onclick="renderMap('Bridge')">Bridge Map</button>
         </div>
 
-        <div class="mindmap-canvas" id="canvas">
-          <div class="map-node">Select an i-Think Map above</div>
+        <div class="mindmap-canvas" id="canvas" style="width: 100%; height: 280px; background: rgba(15, 23, 42, 0.35); border: 2px dashed rgba(255, 255, 255, 0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 10px;">
+          <div style="background: rgba(13, 148, 136, 0.7); border: 2px solid #fff; padding: 10px 18px; border-radius: 20px; font-weight: bold;">Select an i-Think Map above</div>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: SPECIAL NEEDS AI ASSISTANT -->
+      <!-- RIGHT: AI Assistant -->
       <div class="glass-card">
         <h2 class="section-title">Friendly AI Assistant</h2>
-        <div class="chat-box">
-          <div class="chat-messages" id="chatMessages">
-            <div class="chat-msg ai">🌟 Hello! I am your friendly Mind Map Helper! 
+        <div style="display: flex; flex-direction: column; height: 380px;">
+          <div id="chatMessages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
+            <div style="background: rgba(13, 148, 136, 0.35); border: 1px solid rgba(13, 148, 136, 0.5); padding: 12px 16px; border-radius: 14px; align-self: flex-start; max-width: 85%; font-size: 0.95rem; line-height: 1.5; white-space: pre-line;">🌟 Hello! I am your friendly Mind Map Helper!
 
-What subject and topic did your teacher teach you today? Tell me what you want to show (like parts, groups, or steps), and I will help you pick the best mind map!</div>
+What subject and topic did your teacher teach you today?</div>
           </div>
-          <div class="chat-input-area">
-            <input type="text" class="chat-input" id="userInput" placeholder="Type or speak your topic..." onkeypress="handleKey(event)">
-            <button class="interactive-btn" id="micBtn" onclick="toggleVoiceInput()" title="Start Voice Input" style="padding: 12px 16px;">🎙️</button>
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="userInput" placeholder="Type or speak your topic..." onkeypress="handleKey(event)" style="flex: 1; background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 12px; padding: 10px 15px; color: #fff; outline: none;">
+            <button class="interactive-btn" id="micBtn" onclick="toggleVoiceInput()" style="padding: 12px 16px;">🎙️</button>
             <button class="interactive-btn" onclick="sendMessage()">Send</button>
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- LOWER SECTION: EXPANDABLE SPECIAL NEEDS RESOURCES -->
+    <!-- LOWER SECTION -->
     <h2 class="section-title">Learning Materials</h2>
     <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
       <div class="glass-card">
         <h3>🎨 Visual Symbol Cards</h3>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Picture-assisted learning cues designed for non-verbal or low-literacy students.</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Picture-assisted learning cues designed for non-verbal students.</p>
         <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='cards.html'">Open Cards</button>
       </div>
+
+      <div class="glass-card">
+        <h3>🎮 Games</h3>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Interactive puzzle games designed to build sequential thinking skills.</p>
+        <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='storyteller.html'">Play Now</button>
+      </div>
+
       <div class="glass-card">
         <h3>🎧 Audio Storybooks</h3>
-        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Multi-sensory auditory reading materials with synchronized text highlighting.</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">Multi-sensory auditory reading materials with text highlighting.</p>
         <button class="interactive-btn" style="margin-top: 10px;" onclick="window.location.href='audiobooks.html'">Listen Now</button>
       </div>
     </div>
-
   </div>
 
+  <!-- Shared JavaScript Files -->
+  <script src="js/accessibility.js"></script>
   <script>
-    /* ==========================================================================
-       I-THINK MAP RENDERER LOGIC
-       ========================================================================== */
     const mapImages = {
-      'Circle': 'pbulat.jpg',
-      'Bubble': 'pb.jpg',
-      'Double Bubble': 'pbb.jpg',
-      'Tree': 'pp.jpg',
-      'Brace': 'pd.jpg',
-      'Flow': 'pa.jpg',
-      'Multi-Flow': 'pba.jpg',
-      'Bridge': 'pt.jpg'
+      'Circle': 'assets/images/pbulat.jpg',
+      'Bubble': 'assets/images/pb.jpg',
+      'Double Bubble': 'assets/images/pbb.jpg',
+      'Tree': 'assets/images/pp.jpg',
+      'Brace': 'assets/images/pd.jpg',
+      'Flow': 'assets/images/pa.jpg',
+      'Multi-Flow': 'assets/images/pba.jpg',
+      'Bridge': 'assets/images/pt.jpg'
     };
 
     function renderMap(type) {
       const canvas = document.getElementById('canvas');
       const imgSrc = mapImages[type];
-
       if (imgSrc) {
-        canvas.innerHTML = `<img src="${imgSrc}" alt="${type} Map">`;
-      } else {
-        canvas.innerHTML = `<div class="map-node">Select an i-Think Map above</div>`;
+        canvas.innerHTML = `<img src="${imgSrc}" alt="${type} Map" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">`;
       }
     }
 
-    /* ==========================================================================
-       FRIENDLY MIND MAP HELPER AI LOGIC
-       ========================================================================== */
     function sendMessage() {
       const input = document.getElementById('userInput');
       const messages = document.getElementById('chatMessages');
       const text = input.value.trim();
-
       if (!text) return;
 
       const userMsg = document.createElement('div');
-      userMsg.className = 'chat-msg user';
+      userMsg.style.cssText = 'background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.3); padding: 12px 16px; border-radius: 14px; align-self: flex-end; max-width: 85%; font-size: 0.95rem;';
       userMsg.innerText = text;
       messages.appendChild(userMsg);
-
       input.value = '';
       messages.scrollTop = messages.scrollHeight;
-
-      setTimeout(() => {
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'chat-msg ai';
-        aiMsg.innerText = generateMindMapHelperResponse(text);
-        messages.appendChild(aiMsg);
-        messages.scrollTop = messages.scrollHeight;
-      }, 600);
     }
 
     function handleKey(e) {
       if (e.key === 'Enter') sendMessage();
     }
-
-    function generateMindMapHelperResponse(query) {
-      const q = query.toLowerCase();
-
-      if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
-        return "Hello there! 😊 Good try reaching out! What subject and topic did your teacher teach you today?";
-      }
-
-      // 1. Part / Whole -> Brace Map
-      if (q.includes('part') || q.includes('body') || q.includes('car') || q.includes('house') || q.includes('brace')) {
-        renderMap('Brace');
-        return `1. Best mind map: Brace Map
-2. Why it fits: It is super easy for showing the smaller parts of one whole thing!
-3. Put these ideas in your map: main topic, part one, part two, part three, small details.
-4. Add your own drawing or colour idea: Draw the main object on the left, then use blue braces!
-5. Ask one simple checking question: Can you name two parts of your topic for me?`;
-      }
-
-      // 2. Groups / Sorting -> Tree Map
-      if (q.includes('group') || q.includes('sort') || q.includes('type') || q.includes('animal') || q.includes('fruit') || q.includes('tree')) {
-        renderMap('Tree');
-        return `1. Best mind map: Tree Map
-2. Why it fits: It helps you sort things into neat groups like branches on a tree!
-3. Put these ideas in your map: group name, category A, category B, examples, pictures.
-4. Add your own drawing or colour idea: Colour each tree branch with a different bright marker!
-5. Ask one simple checking question: What are two groups you can sort your topic into?`;
-      }
-
-      // 3. Steps / Order -> Flow Map
-      if (q.includes('step') || q.includes('order') || q.includes('life cycle') || q.includes('first') || (q.includes('flow') && !q.includes('multi'))) {
-        renderMap('Flow');
-        return `1. Best mind map: Flow Map
-2. Why it fits: It shows steps in order using neat arrows from start to finish!
-3. Put these ideas in your map: step 1, step 2, step 3, next step, final step.
-4. Add your own drawing or colour idea: Draw little arrows between boxes and color step 1 yellow!
-5. Ask one simple checking question: What is the very first step in your topic?`;
-      }
-
-      // 4. Compare 2 things -> Double Bubble Map
-      if (q.includes('compare') || q.includes('same') || q.includes('difference') || q.includes('vs') || q.includes('double')) {
-        renderMap('Double Bubble');
-        return `1. Best mind map: Double Bubble Map
-2. Why it fits: It lets you compare two things to see what is the same and what is different!
-3. Put these ideas in your map: thing 1, thing 2, same traits, different traits, keywords.
-4. Add your own drawing or colour idea: Use green bubbles for things that are the same!
-5. Ask one simple checking question: What is one thing both of your items share?`;
-      }
-
-      // 5. Causes and effects -> Multi-Flow Map
-      if (q.includes('cause') || q.includes('effect') || q.includes('why') || q.includes('because') || q.includes('multi')) {
-        renderMap('Multi-Flow');
-        return `1. Best mind map: Multi-Flow Map
-2. Why it fits: It shows why something happened and what happens next!
-3. Put these ideas in your map: cause 1, main event, effect 1, effect 2, outcome.
-4. Add your own drawing or colour idea: Color the causes blue and the effects orange!
-5. Ask one simple checking question: What made this event happen?`;
-      }
-
-      // 6. Default / Describe -> Bubble Map
-      renderMap('Bubble');
-      return `1. Best mind map: Bubble Map
-2. Why it fits: It is wonderful for describing something using describing words!
-3. Put these ideas in your map: topic name, describing word 1, describing word 2, color, shape.
-4. Add your own drawing or colour idea: Draw a big center bubble and surround it with colorful small bubbles!
-5. Ask one simple checking question: What is one word that describes your topic?
-
-(If you are unsure, ask your teacher to help check your ideas!)`;
-    }
-
-    /* ==========================================================================
-       VOICE RECORDING / SPEECH-TO-TEXT LOGIC
-       ========================================================================== */
-    let recognition = null;
-    let isListening = false;
-
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SpeechRecognition();
-      
-      recognition.continuous = false;
-      recognition.interimResults = false;
-      recognition.lang = 'en-US';
-
-      recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        const input = document.getElementById('userInput');
-        input.value = transcript;
-        stopListening();
-      };
-
-      recognition.onerror = function(event) {
-        console.error('Speech recognition error:', event.error);
-        stopListening();
-      };
-
-      recognition.onend = function() {
-        stopListening();
-      };
-    }
-
-    function toggleVoiceInput() {
-      if (!recognition) {
-        alert("Speech recognition is not supported in this browser. Please try Chrome or Edge!");
-        return;
-      }
-
-      if (isListening) {
-        recognition.stop();
-        stopListening();
-      } else {
-        try {
-          recognition.start();
-          isListening = true;
-          const micBtn = document.getElementById('micBtn');
-          micBtn.classList.add('recording-active');
-          micBtn.innerText = '🔴 Listening...';
-        } catch (e) {
-          console.error(e);
-        }
-      }
-    }
-
-    function stopListening() {
-      isListening = false;
-      const micBtn = document.getElementById('micBtn');
-      if (micBtn) {
-        micBtn.classList.remove('recording-active');
-        micBtn.innerText = '🎙️';
-      }
-    }
-
-    /* ==========================================================================
-       DYNAMIC ACCESSIBILITY & TEXT SCALING LOGIC
-       ========================================================================== */
-    let sizeOffset = 0;
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
-      elements.forEach(el => {
-        const currentSize = parseFloat(window.getComputedStyle(el).fontSize);
-        el.dataset.originalSize = currentSize;
-      });
-    });
-
-    function adjustFontSize(delta) {
-      if ((sizeOffset <= -6 && delta < 0) || (sizeOffset >= 16 && delta > 0)) return;
-      
-      sizeOffset += delta * 2;
-      
-      const elements = document.querySelectorAll('h1, h2, h3, p, button, input, div');
-      elements.forEach(el => {
-        let baseSize = parseFloat(el.dataset.originalSize);
-        if (!baseSize) {
-          baseSize = parseFloat(window.getComputedStyle(el).fontSize);
-          el.dataset.originalSize = baseSize;
-        }
-        el.style.fontSize = (baseSize + sizeOffset) + 'px';
-      });
-    }
-
-    function toggleSpeech() {
-      const textToRead = "Welcome to Minda Inklusif AI. Select an i-Think map or chat with your AI assistant.";
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.rate = 0.85;
-        window.speechSynthesis.speak(utterance);
-      } else {
-        alert("Text-to-speech is not supported in this browser.");
-      }
-    }
-
-    function toggleContrast() {
-      document.body.classList.toggle('high-contrast');
-    }
-
-    /* ==========================================================================
-       5-MINUTE IDLE DETECTOR LOGIC FOR MAXIMUM TRANSPARENCY
-       ========================================================================== */
-    let idleTimer;
-    const IDLE_TIME_LIMIT = 5 * 60 * 1000; // 5 minutes in milliseconds
-    const container = document.getElementById('mainContainer');
-
-    function resetIdleTimer() {
-      // Remove transparency if active
-      container.classList.remove('idle-transparent');
-      
-      // Clear existing timer and restart
-      clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        container.classList.add('idle-transparent');
-      }, IDLE_TIME_LIMIT);
-    }
-
-    // User activity listeners to reset timer on interaction
-    window.onload = resetIdleTimer;
-    window.onmousemove = resetIdleTimer;
-    window.onmousedown = resetIdleTimer;
-    window.ontouchstart = resetIdleTimer;
-    window.onclick = resetIdleTimer;
-    window.onkeydown = resetIdleTimer;
-    window.addEventListener('scroll', resetIdleTimer, true);
   </script>
 </body>
 </html>
